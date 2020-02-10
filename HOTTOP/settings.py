@@ -25,7 +25,7 @@ SECRET_KEY = 'ul9b@ippmfg@xzvz=h%u0ls$$=$9)h^un%fh6s6+v2n)($#8-r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    "index",
 ]
 
 MIDDLEWARE = [
@@ -47,6 +49,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 自定义中间件
+    'until.cors.CORSmiddleware',
 ]
 
 ROOT_URLCONF = 'HOTTOP.urls'
@@ -118,3 +122,30 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK={
+    "DEFAULT_AUTHENTICATION_CLASSES": ["until.auth.MyAuthentication", ],
+    "UNAUTHENTICATED_USER": None,  # 默认匿名用户 request.user = None
+    "UNAUTHENTICATED_TOKEN": None, # request.auth = None,
+    # 权限
+    "DEFAULT_PERMISSION_CLASSES": ['until.premission.MyPermission', ],
+    # 控制访问频率
+    "DEFAULT_THROTTLE_CLASSES": ['until.isitthrottle.VisitThrottle',
+                                 'until.isitthrottle.VisitThrottle_with_not_one',
+                                 'until.isitthrottle.UserThrottle', ],
+    'DEFAULT_THROTTLE_RATES': {
+        'not_one': '3/m',
+        'user_has': '10/m',
+    },
+}
+
+
+
+# redis config
+REDIS_CONFIG = {
+    'host': '127.0.0.1',
+    'port': '6379',
+    'db': 1,
+    'password': 'redis',
+    'decode_responses': True
+}
