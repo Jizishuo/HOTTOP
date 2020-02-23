@@ -10,8 +10,8 @@ class Index(APIView):
 
     def get(self,request, *args, **kwargs):
         data = {}
-        data['count'] = '123'
-        data['dog'] = 'dog'
+        data['1'] = {'www.v2ex.com': "/type/V2EX/1"}
+        data['2'] = {'next': "....."}
 
         return JsonResponse(data)
 
@@ -34,14 +34,23 @@ class Sprider_type(APIView):
             type_in = kwargs['type']
             type_id = kwargs['type_id']
 
-            if type_in == 'V2EX':
+            if type_in == 'v2ex':
                 data['type'] = 'V2EX'
                 V2EX_mes = cache.get('V2EX')
-                if V2EX_mes is None:
-                    V2EX_mes = get_V2EX()
+                if V2EX_mes is None or V2EX_mes == []:
+                    V2EX_mes = GET_v2ex()
                     cache.set('V2EX', V2EX_mes, 60*5)  # 缓存5分钟
                 data['mes'] = V2EX_mes
 
+
+            if type_in == 'ithome':
+                data['type'] = 'ithome'
+                ithome_mes = cache.get('ithome')
+                if ithome_mes is None or ithome_mes == []:
+                    ithome_mes = GET_ithome()
+                    cache.set('ithome', ithome_mes, 60 * 5)  # 缓存5分钟
+
+                data['mes'] = ithome_mes
             return HttpResponse(json.dumps(data), status=201)
 
             # return JsonResponse(data)
