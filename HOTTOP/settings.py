@@ -123,6 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+ # rest_frame
+
 REST_FRAMEWORK={
     "DEFAULT_AUTHENTICATION_CLASSES": ["until.auth.MyAuthentication", ],
     "UNAUTHENTICATED_USER": None,  # 默认匿名用户 request.user = None
