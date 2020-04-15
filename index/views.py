@@ -51,6 +51,17 @@ class Sprider_type(APIView):
                     cache.set('ithome', ithome_mes, 60 * 5)  # 缓存5分钟
 
                 data['mes'] = ithome_mes
+
+
+            if type_in == 'zhihu':
+                data['type'] = 'zhihu'
+                zhihu_mes = cache.get('zhihu')
+                if zhihu_mes is None or zhihu_mes == []:
+                    zhihu_mes = GET_zhihu()
+                    cache.set('zhihu', zhihu_mes, 60 * 5)  # 缓存5分钟
+
+                data['mes'] = zhihu_mes
+
             return HttpResponse(json.dumps(data), status=201)
 
             # return JsonResponse(data)
