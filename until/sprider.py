@@ -46,7 +46,21 @@ def GET_zhihu():
 
         return [["https://www.zhihu.com/question/" + mes[2][-9:], mes[0], mes[1]] for mes in mes_list]
 
+def GET_weibo():
+    session = HTMLSession()
+    url = "https://s.weibo.com/top/summary"
+
+    try:
+        h = session.get(url=url, timeout=5)
+    except:
+        return []
+
+    else:
+        mes_list = re.findall('<a href="/weibo?(.*?)" target="_blank">(.*?)</a>', h.text)
+
+        return [["https://s.weibo.com/weibo" + mes[0], mes[1]] for mes in mes_list]
+
+
 # if __name__ == '__main__':
-#     # dd = GET_ithome()
-#     # print(dd)
-#     GET_zhihu()
+#     ds = GET_weibo()
+#     print(ds)

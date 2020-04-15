@@ -62,6 +62,15 @@ class Sprider_type(APIView):
 
                 data['mes'] = zhihu_mes
 
+            if type_in == 'weibo':
+                data['type'] = 'weibo'
+                weibo_mes = cache.get('weibo')
+                if weibo_mes is None or weibo_mes == []:
+                    weibo_mes = GET_weibo()
+                    cache.set('weibo', weibo_mes, 60 * 5)  # 缓存5分钟
+
+                data['mes'] = weibo_mes
+
             return HttpResponse(json.dumps(data), status=201)
 
             # return JsonResponse(data)
