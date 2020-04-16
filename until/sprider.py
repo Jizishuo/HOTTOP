@@ -71,6 +71,17 @@ def Get_tieba():
         data = h.json()['data']['bang_topic']['topic_list']
         return [[i['topic_url'], i['topic_desc']] for i in data]
 
+def Get_douba():
+    url = 'https://www.douban.com/group/explore'
+    session = HTMLSession()
+    try:
+        h = session.get(url=url, timeout=5)
+    except:
+        return []
+    else:
+        mes_list = re.findall('<h3><a href="(.*?)">(.*?)</a></h3>', h.text)
+        return [[i[0], i[1]] for i in mes_list]
+
 # if __name__ == '__main__':
-#     ds = Get_tieba()
+#     ds = Get_douba()
 #     print(ds)

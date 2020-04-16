@@ -80,6 +80,15 @@ class Sprider_type(APIView):
 
                 data['mes'] = tieba_mes
 
+            if type_in == 'douban':
+                data['type'] = 'douban'
+                douban_mes = cache.get('douban')
+                if douban_mes is None or douban_mes == []:
+                    douban_mes = Get_douba()
+                    cache.set('douban', douban_mes, 60 * 5)  # 缓存5分钟
+
+                data['mes'] = douban_mes
+
             return HttpResponse(json.dumps(data), status=201)
 
             # return JsonResponse(data)

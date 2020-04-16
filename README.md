@@ -13,5 +13,8 @@
 1. v2ex   "https://www.v2ex.com/?tab=hot"
 2. ithome "https://www.ithome.com/"
 3. 知乎    "https://www.zhihu.com/hot"
+4. 百度贴吧 "http://tieba.baidu.com/hottopic/browse/topicList"
+5. 豆瓣    "https://www.douban.com/group/explore"
+
 ...
 ```
