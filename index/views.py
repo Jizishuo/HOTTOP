@@ -71,6 +71,15 @@ class Sprider_type(APIView):
 
                 data['mes'] = weibo_mes
 
+            if type_in == 'tieba':
+                data['type'] = 'tieba'
+                tieba_mes = cache.get('tieba')
+                if tieba_mes is None or tieba_mes == []:
+                    tieba_mes = Get_tieba()
+                    cache.set('tieba', tieba_mes, 60 * 5)  # 缓存5分钟
+
+                data['mes'] = tieba_mes
+
             return HttpResponse(json.dumps(data), status=201)
 
             # return JsonResponse(data)

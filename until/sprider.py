@@ -60,7 +60,17 @@ def GET_weibo():
 
         return [["https://s.weibo.com/weibo" + mes[0], mes[1]] for mes in mes_list]
 
+def Get_tieba():
+    url = 'http://tieba.baidu.com/hottopic/browse/topicList'
+    session = HTMLSession()
+    try:
+        h = session.get(url=url, timeout=5)
+    except:
+        return []
+    else:
+        data = h.json()['data']['bang_topic']['topic_list']
+        return [[i['topic_url'], i['topic_desc']] for i in data]
 
 # if __name__ == '__main__':
-#     ds = GET_weibo()
+#     ds = Get_tieba()
 #     print(ds)
