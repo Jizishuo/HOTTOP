@@ -1,0 +1,72 @@
+version: "3"
+
+volumes: # 自定义数据卷，位于宿主机/var/lib/docker/volumes内
+ hottop_db_vol: # 定义数据卷同步容器内mysql数据
+ hottop_redis_vol: # 定义数据卷同步redis容器内数据
+ hottop_media_vol: # 定义数据卷同步media文件夹数据
+
+services:
+ redis:
+  image: redis:5
+  command: redis-server /etc/redis/redis.conf # 容器启动后启动redis服务器
+  volumes:
+     - hottop_redis_vol:/data # 通过挂载给redis数据备份
+     - ./compose/redis/redis.conf:/etc/redis/redis.conf # 挂载redis配置文件
+  ports:
+     - "6379:6379"
+  restart: always # always表容器运行发生错误时一直重启
+
+ db:
+  image: mysql:5.7
+  environment:
+     - MYSQL_ROOT_PASSWORD=root # 数据库root密码
+     - MYSQL_DATABASE=hottop # 数据库名称
+     - MYSQL_USER=dbuser # 数据库用户名
+     - MYSQL_PASSWORD=dbuser # 用户密码
+
+  volumes:
+     - hottop_db_vol:/var/lib/mysql:rw # 挂载数据库数据, 可读可写
+     - ./compose/mysql/conf/my.cnf:/etc/mysql/my.cnf # 挂载配置文件
+     - ./compose/mysql/init:/docker-entrypoint-initdb.d/ # 挂载数据初始化sql脚本
+  ports:
+     - "3306:3306" # 与配置文件保持一致
+  restart: always
+
+web:
+  build: ./HOTTOP # 使用hottop目录下的Dockerfile
+  expose:
+     - "8000"
+  volumes:
+     - ./hottop:/var/www/html/hottop # 挂载项目代码
+     - hottop_media_vol:/var/www/html/hottop/media # 以数据卷挂载容器内用户上传媒体文件
+     - ./compose/uwsgi:/tmp # 挂载uwsgi日志
+  links:
+     - db
+     - redis
+  depends_on: # 依赖关系
+     - db
+     - redis
+  environment:
+     - DEBUG=False
+   restart: always
+  tty: true
+  stdin_open: true
+
+nginx:
+  build: ./compose/nginx
+  ports:
+     - "80:80"
+     - "443:443"
+  expose:
+     - "80"
+  volumes:
+     - ./hottop/static:/usr/share/nginx/html/static # 挂载静态文件
+     - ./compose/nginx/ssl:/usr/share/nginx/ssl # 挂载ssl证书目录
+     - ./compose/nginx/log:/var/log/nginx # 挂载日志
+     - ./compose/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+     - hottop_media_vol:/usr/share/nginx/html/media # 挂载用户上传媒体文件
+  links:
+     - web
+  depends_on:
+     - web
+  restart: always
