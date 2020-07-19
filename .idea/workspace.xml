@@ -20,29 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13503cae-82d0-435e-9452-4416f137ff7c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HOTTOP/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HOTTOP/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HOTTOP/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HOTTOP/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/until/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/until/auth.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/until/cors.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/until/func.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/until/isitthrottle.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/until/premission.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/until/redis.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/until/sprider.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,25 +37,6 @@
         <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>ContentType</find>
-      <find>被通知在家办公，工资 50%</find>
-      <find>&lt;td width=&quot;auto&quot;</find>
-      <find>&lt;/a&gt;&lt;/span&gt;</find>
-      <find>0/474/336.htm</find>
-      <find>开开心心尝尝鲜：浓缩鲜炖燕窝70g装11.6元（手慢无）</find>
-      <find>', '</find>
-      <find>class=&quot;topic-link&quot;&gt;</find>
-      <find>&quot;titleArea&quot;:{&quot;text&quot;:&quot;</find>
-      <find>('</find>
-      <find>titleArea</find>
-      <find>=top&quot; target=&quot;_blank&quot;&gt;</find>
-      <find>'topic_id'</find>
-      <find>tieba</find>
-      <find>&lt;h3&gt;&lt;a href=&quot;</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -166,7 +126,7 @@
       <workItem from="1585300733437" duration="619000" />
       <workItem from="1586934805179" duration="3856000" />
       <workItem from="1587019358015" duration="1398000" />
-      <workItem from="1595154020028" duration="163000" />
+      <workItem from="1595154020028" duration="373000" />
     </task>
     <servers />
   </component>
